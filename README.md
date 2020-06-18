@@ -1,3 +1,5 @@
+![Test PHP](https://github.com/SebKay/php-notice/workflows/Test%20PHP/badge.svg)
+
 # PHP Notice
 Easily output a simple flash message/notice to the page, but only once.
 

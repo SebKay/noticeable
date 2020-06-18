@@ -19,7 +19,7 @@ class Notice
 
     /**
      * Get the last notice
-     * 
+     *
      * @return array
      */
     public static function get()

@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPFN;
+namespace Noticeable;
 
 class Notice
 {
-    private static $session_name = 'notice';
+    protected static $session_name = 'notice';
 
     /**
      * Set a new notice

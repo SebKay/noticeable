@@ -1,13 +1,13 @@
-![Test PHP](https://github.com/SebKay/php-notice/workflows/Test%20PHP/badge.svg)
+![Test PHP](https://github.com/sebkay/noticeable/workflows/Test%20PHP/badge.svg)
 
-# PHP Notice
+# Noticeable
 Easily output a simple flash message/notice to the page, but only once.
 
 ## How to install
 It's recommended you install this package via [Composer](https://getcomposer.org/).
 
 ```bash
-composer require sebkay/php-notice
+composer require sebkay/noticeable
 ```
 
 The notice is session based and will be removed on the next page refresh.
@@ -18,7 +18,7 @@ First you'll need to start a session. Put this at the very start of your project
 session_start();
 ```
 
-You'll then need to include the Composer autoloader so you have access to the package.
+Then include the Composer autoloader so you have access to the package.
 
 ```php
 require get_template_directory() . '/vendor/autoload.php';
@@ -26,12 +26,12 @@ require get_template_directory() . '/vendor/autoload.php';
 
 ## How to use
 ### Setting the notice
-You can set a notice using the `::set` static method and passing the `message` (as well as the `type`).
+You can set a notice using the `::set` static method. You need to pass the `message` and the `type`.
 
-The type can be anything you want, but `error` and `success` are good standards to follow.
+They can both be anything you want. `error` and `success` are good standards to follow for `type`.
 
 ```php
-PHPFN\Notice::set([
+Noticeable\Notice::set([
     'message' => 'Please enter an email address.',
     'type'    => 'error'
 ]);
@@ -41,7 +41,7 @@ PHPFN\Notice::set([
 When you get a notice it will return an array, like so:
 
 ```php
-$notice = PHPFN/Notice::get();
+$notice = Noticeable/Notice::get();
 
 var_dump($notice);
 
@@ -61,7 +61,7 @@ Once you have the array you can do whatever you want with it, like load a PHP fi
 I'm a big fan of [Twig](https://github.com/twigphp/Twig), so I would do something like this:
 
 ```php
-echo $twig->render('notice.twig', PHPFN/Notice::get());
+echo $twig->render('notice.twig', Noticeable/Notice::get());
 ```
 
 Then I'll have the corresponding `notice.twig` file laid out like so:

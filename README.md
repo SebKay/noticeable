@@ -21,7 +21,7 @@ session_start();
 Then include the Composer autoloader so you have access to the package.
 
 ```php
-require get_template_directory() . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 ```
 
 ## How to use

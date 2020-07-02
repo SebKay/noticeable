@@ -10,9 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Setup Composer Access
-      run: composer config -g github-oauth.github.com ${{ secrets.GH_ACCESS_TOKEN }}
-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 

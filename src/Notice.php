@@ -4,12 +4,15 @@ namespace Noticeable;
 
 class Notice
 {
+    /**
+     * @var string
+     */
     protected static $session_name = 'notice';
 
     /**
      * Set a new notice
      */
-    public static function set($args)
+    public static function set(array $args): void
     {
         $_SESSION[self::$session_name] = [
             'message' => ($args['message'] ?? null),
@@ -22,13 +25,9 @@ class Notice
      *
      * @return array
      */
-    public static function get()
+    public static function get(): array
     {
-        $notice = ($_SESSION[self::$session_name] ?? null);
-
-        if (!$notice) {
-            return [];
-        }
+        $notice = ($_SESSION[self::$session_name] ?? []);
 
         unset($_SESSION[self::$session_name]);
 

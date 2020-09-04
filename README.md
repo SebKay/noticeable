@@ -41,7 +41,7 @@ Noticeable\Notice::set([
 When you get a notice it will return an array, like so:
 
 ```php
-$notice = Noticeable/Notice::get();
+$notice = Noticeable\Notice::get();
 
 var_dump($notice);
 
@@ -61,7 +61,7 @@ Once you have the array you can do whatever you want with it, like load a PHP fi
 I'm a big fan of [Twig](https://github.com/twigphp/Twig), so I would do something like this:
 
 ```php
-echo $twig->render('notice.twig', Noticeable/Notice::get());
+echo $twig->render('notice.twig', Noticeable\Notice::get());
 ```
 
 Then I'll have the corresponding `notice.twig` file laid out like so:

@@ -1,0 +1,30 @@
+name: Validate PHP
+
+on: [pull_request]
+
+jobs:
+  validate-psr12:
+    name: Validate Against PSR12
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHPCS
+      run: ./vendor/bin/phpcs --standard=PSR12 src
+
+  analyse:
+    name: Analyse Code
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run Psalm
+      run: ./vendor/bin/phpcs --standard=PSR12 src

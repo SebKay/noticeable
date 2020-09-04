@@ -1,6 +1,6 @@
 {
     "name": "sebkay/noticeable",
-    "version" : "1.1.0",
+    "version" : "1.2.0",
     "authors": [
         {
             "name": "Seb Kay",
@@ -24,6 +24,6 @@
     "scripts" : {
         "phpcs" : "@php vendor/bin/phpcs --standard=PSR12 src",
         "phpcbf": "@php vendor/bin/phpcbf --standard=PSR12 src",
-        "psalm" : "@php vendor/bin/psalm "
+        "psalm" : "@php vendor/bin/psalm"
     }
 }

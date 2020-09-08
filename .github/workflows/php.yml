@@ -1,11 +1,6 @@
 name: Validate PHP
 
-# on: [pull_request]
-
-on:
-  push:
-    branches:
-      - tests
+on: [pull_request]
 
 jobs:
   validate-psr12:

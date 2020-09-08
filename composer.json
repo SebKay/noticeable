@@ -1,6 +1,6 @@
 {
     "name": "sebkay/noticeable",
-    "version" : "1.1.0",
+    "version" : "1.2.0",
     "authors": [
         {
             "name": "Seb Kay",
@@ -10,7 +10,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Noticeable\\": "src/"
+            "Noticeable\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "license": "MIT",
@@ -19,11 +20,13 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
-        "vimeo/psalm": "^3.12"
+        "vimeo/psalm": "^3.12",
+        "phpunit/phpunit": "^9.3"
     },
     "scripts" : {
-        "phpcs" : "@php vendor/bin/phpcs --standard=PSR12 src",
-        "phpcbf": "@php vendor/bin/phpcbf --standard=PSR12 src",
-        "psalm" : "@php vendor/bin/psalm "
+        "phpcs" : "./vendor/bin/phpcs --standard=PSR12 src",
+        "phpcbf": "./vendor/bin/phpcbf --standard=PSR12 src",
+        "psalm" : "./vendor/bin/psalm",
+        "phpunit" : "./vendor/bin/phpunit --colors=always"
     }
 }

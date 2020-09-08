@@ -1,4 +1,4 @@
-![Test PHP](https://github.com/sebkay/noticeable/workflows/Test%20PHP/badge.svg)
+![Validate PHP](https://github.com/SebKay/noticeable/workflows/Validate%20PHP/badge.svg)
 
 # Noticeable
 Easily output a simple flash message/notice to the page, but only once.

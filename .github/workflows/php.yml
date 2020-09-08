@@ -1,6 +1,11 @@
 name: Validate PHP
 
-on: [pull_request]
+# on: [pull_request]
+
+on:
+  push:
+    branches:
+      - tests
 
 jobs:
   validate-psr12:
@@ -14,7 +19,20 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run PHPCS
-      run: ./vendor/bin/phpcs --standard=PSR12 src
+      run: composer phpcs
+
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHPUnit
+      run: composer phpunit
 
   analyse:
     name: Analyse Code
@@ -27,4 +45,4 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run Psalm
-      run: ./vendor/bin/phpcs --standard=PSR12 src
+      run: composer psalm

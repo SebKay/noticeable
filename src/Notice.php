@@ -7,7 +7,7 @@ class Notice
     /**
      * @var string
      */
-    protected static $session_name = 'notice';
+    protected static $session_name = self::class;
 
     /**
      * Set a new notice

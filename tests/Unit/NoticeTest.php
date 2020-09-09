@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Noticeable\Notice;
+use Noticeable\NoticeContent;
 
 class NoticeTest extends Test
 {
@@ -18,10 +19,9 @@ class NoticeTest extends Test
     {
         $this->expectException(\Exception::class);
 
-        Notice::set([
-            'message' => '',
-            'type'    => 'success'
-        ]);
+        Notice::set(
+            new NoticeContent('', 'success')
+        );
     }
 
     /**
@@ -31,10 +31,9 @@ class NoticeTest extends Test
     {
         $this->expectException(\Exception::class);
 
-        Notice::set([
-            'message' => 'This is a notice.',
-            'type'    => ''
-        ]);
+        Notice::set(
+            new NoticeContent('This is a notice.', '')
+        );
     }
 
     /**
@@ -44,22 +43,20 @@ class NoticeTest extends Test
     {
         $this->expectException(\Exception::class);
 
-        Notice::set([
-            'message' => 'This is a success notice with an incorrect type.',
-            'type'    => 'successes'
-        ]);
+        Notice::set(
+            new NoticeContent('This is a notice.', 'successes')
+        );
     }
 
     /**
      * @test
      */
-    public function test_an_array_is_returned()
+    public function test_an_value_object_is_returned()
     {
-        Notice::set([
-            'message' => 'This is a success notice.',
-            'type'    => 'success'
-        ]);
+        Notice::set(
+            new NoticeContent('This is a notice.', 'success')
+        );
 
-        $this->assertIsArray(Notice::get());
+        $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
     }
 }

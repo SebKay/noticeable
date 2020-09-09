@@ -24,7 +24,7 @@ class Notice
      */
     public static function get(): NoticeContent
     {
-        $notice = ($_SESSION[self::$session_name] ?? []);
+        $notice = $_SESSION[self::$session_name];
 
         unset($_SESSION[self::$session_name]);
 

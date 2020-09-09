@@ -17,7 +17,7 @@ class NoticeContent
     /**
      * @var array
      */
-    protected static $allowed_types = ['success', 'error'];
+    protected $allowed_types = ['info', 'success', 'error'];
 
     /**
      * Set up
@@ -39,7 +39,9 @@ class NoticeContent
         }
 
         if (!in_array($type, $this->allowed_types)) {
-            throw new \InvalidArgumentException("'$type' is not a valid type. Please use either 'success' or 'error'.");
+            $types_as_string = implode(', ', $this->allowed_types);
+
+            throw new \InvalidArgumentException("'$type' is not a valid type. Please use either $types_as_string.");
         }
     }
 

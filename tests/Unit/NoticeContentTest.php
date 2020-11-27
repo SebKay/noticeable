@@ -9,7 +9,26 @@ class NoticeContentTest extends Test
     /**
      * @test
      */
-    public function test_type_can_be_checked_against_valid_types()
+    public function test_message_is_set_successfully()
+    {
+        $notice_content = new NoticeContent('This is a notice.', 'success');
+
+        $this->assertSame('This is a notice.', $notice_content->message());
+    }
+
+    /**
+     * @test
+     */
+    public function test_type_is_set_successfully()
+    {
+        $notice_content = new NoticeContent('This is a notice.', 'success');
+
+        $this->assertSame('success', $notice_content->type());
+    }
+    /**
+     * @test
+     */
+    public function test_invalid_type_can_be_caught()
     {
         $notice_content = new NoticeContent('This is a notice.', 'successes');
 

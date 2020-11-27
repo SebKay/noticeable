@@ -16,7 +16,7 @@ class NoticeTest extends Test
             new NoticeContent('This is a notice.', 'success')
         );
 
-        $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
+        $this->assertInstanceOf(NoticeContent::class, Notice::get());
     }
 
     /**
@@ -48,7 +48,7 @@ class NoticeTest extends Test
      */
     public function test_no_errors_when_notice_doesnt_exist()
     {
-        $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
+        $this->assertInstanceOf(NoticeContent::class, Notice::get());
     }
 
     /**

@@ -10,7 +10,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "Noticeable\\": "src/",
+            "Noticeable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Tests\\": "tests/"
         }
     },

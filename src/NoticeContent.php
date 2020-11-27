@@ -29,19 +29,21 @@ class NoticeContent
     {
         $this->message = $message;
         $this->type    = $type;
+    }
 
-        if ($message == '') {
-            throw new \InvalidArgumentException('Please provide a notice message.');
-        }
-
-        if ($type == '') {
-            throw new \InvalidArgumentException('Please provide a notice type.');
-        }
-
-        if (!in_array($type, $this->allowed_types)) {
+    /**
+     * Verify the type is valid
+     *
+     * @return void
+     */
+    public function verifyType(): void
+    {
+        if (!in_array($this->type, $this->allowed_types)) {
             $types_as_string = implode(', ', $this->allowed_types);
 
-            throw new \InvalidArgumentException("'$type' is not a valid type. Please use either $types_as_string.");
+            throw new \InvalidArgumentException(
+                "'$this->type' is not a valid type. Please use either $types_as_string."
+            );
         }
     }
 

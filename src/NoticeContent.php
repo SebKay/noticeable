@@ -48,6 +48,16 @@ class NoticeContent
     }
 
     /**
+     * Check if content is blank
+     *
+     * @return boolean
+     */
+    public function isEmpty()
+    {
+        return ($this->message() == '' && $this->type() == '' ? true : false);
+    }
+
+    /**
      * Get the message
      *
      * @return string

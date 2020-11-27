@@ -50,4 +50,24 @@ class NoticeTest extends Test
     {
         $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
     }
+
+    /**
+     * @test
+     */
+    public function test_notice_is_cleared_after_get()
+    {
+        Notice::set(
+            new NoticeContent('This is a notice.', 'success')
+        );
+
+        $notice_1 = Notice::get();
+
+        // Content was successfully retrieved on first get
+        $this->assertFalse($notice_1->isEmpty());
+
+        $notice_2 = Notice::get();
+
+        // Content was successfully removed on first get
+        $this->assertTrue($notice_2->isEmpty());
+    }
 }

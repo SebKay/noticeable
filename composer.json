@@ -31,7 +31,10 @@
         "refresh" : "git clean -xffd && composer install --ansi",
         "phpcs" : "./vendor/bin/phpcs --standard=PSR12 src",
         "phpcbf": "./vendor/bin/phpcbf --standard=PSR12 src",
-        "psalm" : "./vendor/bin/psalm",
-        "phpunit" : "./vendor/bin/phpunit --colors=always tests"
+        "psalm": "./vendor/bin/psalm --show-info=true",
+        "phpunit": "./vendor/bin/phpunit --colors=always tests --process-isolation",
+        "phpunit:testdox": "@phpunit --testdox",
+        "phpunit:coverage": "@phpunit --coverage-html coverage",
+        "test" : "composer phpcs && composer psalm && composer phpunit"
     }
 }

@@ -26,7 +26,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## How to use
 ### Setting the notice
-You can set a notice using the `::set` static method. All you need to pass is `Noticeable\NoticeContent` object which accepts the `message` and the `type`.
+You can set a notice using the `::set` static method. You need to pass a `Noticeable\NoticeContent` object which accepts a `message` and a `type`.
 
 The type must be either `info`, `success` or `error`. Anything else with throw an `InvalidArgumentException` exception.
 
@@ -50,8 +50,8 @@ print_r($notice);
 // Will return
 Noticeable\NoticeContent Object
 (
-    [message:protected] => This is a success notice.
-    [type:protected] => success
+    [message:protected] => Please enter an email address.
+    [type:protected] => error
     [allowed_types:protected] => Array
         (
             [0] => info
@@ -66,7 +66,9 @@ Noticeable\NoticeContent Object
 ### Available Methods
 
 ```php
-$notice->message(); // (string) This is a success notice.
+$notice = Notice::get();
+
+$notice->message(); // (string) Please enter an email address.
 
 $notice->type(); // (string) error
 
@@ -79,21 +81,25 @@ Once you have the notice you can do whatever you want with it, like load a PHP f
 I'm a big fan of [Twig](https://github.com/twigphp/Twig), so I would do something like this:
 
 ```php
-echo $twig->render('notice.twig', Notice::get());
+$notice = Notice::get();
+
+echo $twig->render('notice.twig', [
+    'message' => $notice->message(),
+    'type'    => $notice->type()
+]);
 ```
 
-Then I'll have the corresponding `notice.twig` file laid out like so:
+Then I'll have the `notice.twig` file laid out like so:
 
 ```twig
 {% if message %}
-    {% switch type %}
-        {% case 'info' %}
-            {% set css_class = 'notice--info' %}
-        {% case 'success' %}
-            {% set css_class = 'notice--success' %}
-        {% case 'error' %}
-            {% set css_class = 'notice--error' %}
-    {% endswitch %}
+    {% if type == 'info' %}
+        {% set css_class = 'notice--info' %}
+    {% elseif type == 'success' %}
+        {% set css_class = 'notice--success' %}
+    {% elseif type == 'error' %}
+        {% set css_class = 'notice--error' %}
+    {% endif %}
 
     <div class="notice {{ css_class }}">
         <p class="notice__title">

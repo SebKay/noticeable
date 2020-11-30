@@ -1,4 +1,4 @@
-name: Validate PHP
+name: Test PHP
 
 on: [pull_request]
 

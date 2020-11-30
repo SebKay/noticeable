@@ -16,19 +16,6 @@ jobs:
     - name: Run PHPCS
       run: composer phpcs
 
-  run-tests:
-    name: Run Tests
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Run PHPUnit
-      run: composer phpunit
-
   analyse:
     name: Analyse Code
     runs-on: ubuntu-latest
@@ -41,3 +28,16 @@ jobs:
 
     - name: Run Psalm
       run: composer psalm
+
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHPUnit
+      run: composer phpunit

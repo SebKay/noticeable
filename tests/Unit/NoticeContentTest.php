@@ -25,10 +25,35 @@ class NoticeContentTest extends Test
 
         $this->assertSame('success', $notice_content->type());
     }
+
     /**
      * @test
      */
-    public function test_invalid_type_can_be_caught()
+    public function test_empty_message_is_caught()
+    {
+        $notice_content = new NoticeContent('', 'success');
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        $notice_content->verifyMessage();
+    }
+
+    /**
+     * @test
+     */
+    public function test_empty_type_is_caught()
+    {
+        $notice_content = new NoticeContent('This is a notice.', '');
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        $notice_content->verifyType();
+    }
+
+    /**
+     * @test
+     */
+    public function test_invalid_type_is_caught()
     {
         $notice_content = new NoticeContent('This is a notice.', 'successes');
 

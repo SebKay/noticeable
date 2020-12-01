@@ -22,31 +22,7 @@ class NoticeTest extends Test
     /**
      * @test
      */
-    public function test_message_cannot_be_empty_on_set()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        Notice::set(
-            new NoticeContent('', 'success')
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function test_type_cannot_be_empty_on_set()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        Notice::set(
-            new NoticeContent('This is a notice.', '')
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function test_no_errors_when_notice_doesnt_exist()
+    public function test_no_errors_when_notice_isnt_set()
     {
         $this->assertInstanceOf(NoticeContent::class, Notice::get());
     }
@@ -54,7 +30,7 @@ class NoticeTest extends Test
     /**
      * @test
      */
-    public function test_notice_is_cleared_after_get()
+    public function test_notice_is_cleared_after_initial_get()
     {
         Notice::set(
             new NoticeContent('This is a notice.', 'success')

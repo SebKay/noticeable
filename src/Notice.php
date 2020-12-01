@@ -14,14 +14,7 @@ class Notice
      */
     public static function set(NoticeContent $notice_content): void
     {
-        if ($notice_content->message() == '') {
-            throw new \InvalidArgumentException('Please provide a notice message.');
-        }
-
-        if ($notice_content->type() == '') {
-            throw new \InvalidArgumentException('Please provide a notice type.');
-        }
-
+        $notice_content->verifyMessage();
         $notice_content->verifyType();
 
         $_SESSION[self::$session_name] = $notice_content;

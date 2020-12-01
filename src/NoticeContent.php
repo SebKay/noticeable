@@ -31,6 +31,13 @@ class NoticeContent
         $this->type    = $type;
     }
 
+    public function verifyMessage()
+    {
+        if ($this->message() == '') {
+            throw new \InvalidArgumentException('Please provide a message.');
+        }
+    }
+
     /**
      * Verify the type is valid
      *
@@ -38,13 +45,27 @@ class NoticeContent
      */
     public function verifyType(): void
     {
-        if (!in_array($this->type, $this->allowed_types)) {
+        if ($this->type() == '') {
+            throw new \InvalidArgumentException('Please provide a type.');
+        }
+
+        if (!in_array($this->type(), $this->allowed_types)) {
             $types_as_string = implode(', ', $this->allowed_types);
 
             throw new \InvalidArgumentException(
-                "'$this->type' is not a valid type. Please use either $types_as_string."
+                "'{$this->type()}' is not a valid type. Please use either $types_as_string."
             );
         }
+    }
+
+    /**
+     * Check if content is blank
+     *
+     * @return boolean
+     */
+    public function isEmpty()
+    {
+        return ($this->message() == '' && $this->type() == '' ? true : false);
     }
 
     /**

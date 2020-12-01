@@ -1,3 +1,7 @@
+# Directories
 vendor/
+coverage/
+
+# Files
 composer.lock
 .phpunit.result.cache

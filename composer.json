@@ -1,6 +1,6 @@
 {
     "name": "sebkay/noticeable",
-    "version" : "2.1.0",
+    "version" : "2.2.0",
     "authors": [
         {
             "name": "Seb Kay",
@@ -24,14 +24,17 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
-        "vimeo/psalm": "^3.12",
+        "vimeo/psalm": "^4.2",
         "phpunit/phpunit": "^9.4"
     },
     "scripts" : {
         "refresh" : "git clean -xffd && composer install --ansi",
         "phpcs" : "./vendor/bin/phpcs --standard=PSR12 src",
         "phpcbf": "./vendor/bin/phpcbf --standard=PSR12 src",
-        "psalm" : "./vendor/bin/psalm",
-        "phpunit" : "./vendor/bin/phpunit --colors=always tests"
+        "psalm": "./vendor/bin/psalm --show-info=true",
+        "phpunit": "./vendor/bin/phpunit --colors=always tests --process-isolation",
+        "phpunit:testdox": "@phpunit --testdox",
+        "phpunit:coverage": "@phpunit --coverage-html coverage",
+        "test" : "composer phpcs && composer psalm && composer phpunit"
     }
 }

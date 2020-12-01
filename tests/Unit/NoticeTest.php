@@ -16,38 +16,34 @@ class NoticeTest extends Test
             new NoticeContent('This is a notice.', 'success')
         );
 
-        $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
+        $this->assertInstanceOf(NoticeContent::class, Notice::get());
     }
 
     /**
      * @test
      */
-    public function test_message_cannot_be_empty_on_set()
+    public function test_no_errors_when_notice_isnt_set()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->assertInstanceOf(NoticeContent::class, Notice::get());
+    }
 
+    /**
+     * @test
+     */
+    public function test_notice_is_cleared_after_initial_get()
+    {
         Notice::set(
-            new NoticeContent('', 'success')
+            new NoticeContent('This is a notice.', 'success')
         );
-    }
 
-    /**
-     * @test
-     */
-    public function test_type_cannot_be_empty_on_set()
-    {
-        $this->expectException(\InvalidArgumentException::class);
+        $notice_1 = Notice::get();
 
-        Notice::set(
-            new NoticeContent('This is a notice.', '')
-        );
-    }
+        // Content was successfully retrieved on first get
+        $this->assertFalse($notice_1->isEmpty());
 
-    /**
-     * @test
-     */
-    public function test_no_errors_when_notice_doesnt_exist()
-    {
-        $this->assertInstanceOf('\Noticeable\NoticeContent', Notice::get());
+        $notice_2 = Notice::get();
+
+        // Content was successfully removed on first get
+        $this->assertTrue($notice_2->isEmpty());
     }
 }

@@ -32,7 +32,7 @@
         "lint" : "./vendor/bin/phpcs --standard=PSR12 src",
         "fix": "./vendor/bin/phpcbf --standard=PSR12 src",
         "analyse": "./vendor/bin/psalm --show-info=true",
-        "test": "./vendor/bin/phpunit --colors=always tests --process-isolation",
+        "test": "./vendor/bin/pest",
         "test:testdox": "@phpunit --testdox",
         "test:coverage": "@phpunit --coverage-html coverage"
     }

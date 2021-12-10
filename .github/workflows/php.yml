@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   validate-psr12:
-    name: Validate Against PSR12
+    name: Validate Against PSR-12
     runs-on: ubuntu-latest
 
     steps:

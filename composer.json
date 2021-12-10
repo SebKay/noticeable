@@ -28,12 +28,11 @@
         "pestphp/pest": "^1.21"
     },
     "scripts" : {
-        "build:dev" : "git clean -xffd && composer install",
+        "build:dev" : "git clean -xffd && composer install --prefer-dist --no-progress",
         "lint" : "./vendor/bin/phpcs --standard=PSR12 src",
         "fix": "./vendor/bin/phpcbf --standard=PSR12 src",
         "analyse": "./vendor/bin/psalm --show-info=true",
         "test": "./vendor/bin/pest",
-        "test:unit": "@test --testsuite Unit",
         "test:coverage": "@test --coverage-html coverage"
     }
 }

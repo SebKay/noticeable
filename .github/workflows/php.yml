@@ -1,4 +1,4 @@
-name: Test PHP
+name: Check PHP
 
 on: [pull_request]
 
@@ -8,36 +8,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install dependencies
+        run: composer build:dev
 
-    - name: Run PHPCS
-      run: composer phpcs
+      - name: Lint PHP
+        run: composer lint
 
   analyse:
     name: Analyse Code
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install dependencies
+        run: composer build:dev
 
-    - name: Run Psalm
-      run: composer psalm
+      - name: Analyse PHP
+        run: composer psalm
 
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install dependencies
+        run: composer build:dev
 
-    - name: Run PHPUnit
-      run: composer phpunit
+      - name: Test PHP
+        run: composer phpunit

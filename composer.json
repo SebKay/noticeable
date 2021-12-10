@@ -33,7 +33,7 @@
         "fix": "./vendor/bin/phpcbf --standard=PSR12 src",
         "analyse": "./vendor/bin/psalm --show-info=true",
         "test": "./vendor/bin/pest",
-        "test:testdox": "@phpunit --testdox",
-        "test:coverage": "@phpunit --coverage-html coverage"
+        "test:unit": "@test --testsuite Unit",
+        "test:coverage": "@test --coverage-html coverage"
     }
 }

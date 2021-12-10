@@ -1,64 +1,28 @@
 <?php
 
-namespace Tests\Unit;
-
+use Noticeable\Notice;
 use Noticeable\NoticeContent;
 
-class NoticeContentTest extends Test
-{
-    /**
-     * @test
-     */
-    public function test_message_is_set_successfully()
-    {
-        $notice_content = new NoticeContent('This is a notice.', 'success');
+test('Message is set successfully', function () {
+    $notice_content = new NoticeContent('This is a notice.', 'success');
 
-        $this->assertSame('This is a notice.', $notice_content->message());
-    }
+    expect($notice_content->message())->toBe('This is a notice.');
+});
 
-    /**
-     * @test
-     */
-    public function test_type_is_set_successfully()
-    {
-        $notice_content = new NoticeContent('This is a notice.', 'success');
+test('Type is set successfully', function () {
+    $notice_content = new NoticeContent('This is a notice.', 'success');
 
-        $this->assertSame('success', $notice_content->type());
-    }
+    expect($notice_content->type())->toBe('success');
+});
 
-    /**
-     * @test
-     */
-    public function test_empty_message_is_caught()
-    {
-        $notice_content = new NoticeContent('', 'success');
+test('An empty message cannot be set', function () {
+    Notice::set(new NoticeContent('', 'success'));
+})->throws(\InvalidArgumentException::class);
 
-        $this->expectException(\InvalidArgumentException::class);
+test('An empty type cannot be set', function () {
+    Notice::set(new NoticeContent('This is a notice.', ''));
+})->throws(\InvalidArgumentException::class);
 
-        $notice_content->verifyMessage();
-    }
-
-    /**
-     * @test
-     */
-    public function test_empty_type_is_caught()
-    {
-        $notice_content = new NoticeContent('This is a notice.', '');
-
-        $this->expectException(\InvalidArgumentException::class);
-
-        $notice_content->verifyType();
-    }
-
-    /**
-     * @test
-     */
-    public function test_invalid_type_is_caught()
-    {
-        $notice_content = new NoticeContent('This is a notice.', 'successes');
-
-        $this->expectException(\InvalidArgumentException::class);
-
-        $notice_content->verifyType();
-    }
-}
+test('An invalid type cannot be used', function () {
+    Notice::set(new NoticeContent('This is a notice.', 'testy'));
+})->throws(\InvalidArgumentException::class);

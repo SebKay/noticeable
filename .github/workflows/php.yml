@@ -27,7 +27,7 @@ jobs:
         run: composer build:dev
 
       - name: Analyse PHP
-        run: composer psalm
+        run: composer analyse
 
   run-tests:
     name: Run Tests
@@ -40,4 +40,4 @@ jobs:
         run: composer build:dev
 
       - name: Test PHP
-        run: composer phpunit
+        run: composer test
